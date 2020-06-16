@@ -132,7 +132,6 @@ $("#generate").click(function () {
   for (var x = 1; x < MAX; x++) {
     offset = homeValues[x] - homeValues[x - 1];
     calcNum(nextValues, offset);
-    matrix += nextValues[i];
     printMarker("P", primeNum[x]);
     printNextRow(nextRow, nextValues);
     printMarker("R", primeNum[x]);
