@@ -1,0 +1,135 @@
+
+body{
+  font-family: Sylfaen, Helvetica, sans-serif;
+  width: 800px;
+  text-align: center;
+}
+
+#matrix{
+  position: absolute;
+  text-align: center;
+  vertical-align: center;
+  display: grid;
+  grid-template: repeat(14, 1fr)/repeat(14, 1fr);
+  background: cornsilk;
+  gap: 13px;
+  width: 95%;
+  border: 3px solid black;
+  padding: 20px;
+  }
+
+#selection{
+  width: 65%;
+  height: 30px;
+  font-family: Sylfaen, Helvetica, sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+
+.tone{
+  font-family: Sylfaen, Helvetica, sans-serif;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  font-size: 20px;
+  background: white;
+  border: 1px solid olive;
+}
+
+.marker{
+  font-family: Arial italic, Helvetica, sans-serif;
+  text-align: center;
+  width: auto;
+  height: 30px;
+  padding: 5px;
+  font-size: 12px;
+  background: cornsilk;
+}
+
+.tone.C:hover{
+  background: aqua;
+}
+ .tone.C-sharp:hover{
+  background:#ff00ff;
+}
+ .tone.D:hover{
+  background:rgba(187, 255, 0, 0.466);
+}
+ .tone.E-flat:hover{
+  background:#37cfcf;
+}
+ .tone.E:hover{
+  background:rgb(227, 255, 100);
+}
+ .tone.F:hover{
+  background:rgb(64, 165, 224);
+}
+ .tone.F-sharp:hover{
+  background:brown;
+}
+ .tone.G:hover{
+  background:rgba(255, 251, 0, 0.692);
+}
+ .tone.A-flat:hover{
+  background: rgb(255, 0, 76);
+}
+ .tone.A:hover{
+  background:rgb(215, 218, 32);
+}
+ .tone.B-flat:hover{
+  background:rgb(127, 15, 207);
+}
+ .tone.B:hover{
+  background: lightgreen;
+}
+#buttons{
+
+  width: 75%;
+  margin-left: 15%;
+}
+
+#buttons .tone{
+  margin: 5px;
+}
+
+#clear{
+  width: 100px;
+  border: 2px solid crimson;
+  margin: 10px;
+}
+
+#generate{
+  width: 100px;
+  border: 2px solid orange;
+  margin: 10px;
+}
+
+
+.wrapper{
+  margin: 100px auto;
+  width: 900px;
+  height: 100%;
+  position: relative;
+}
+
+.marker{
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  background-color: greenyellow;
+}
+
+.blank{
+  background-color: cornsilk;
+}
+
+
+

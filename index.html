@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+	</script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Tone Row</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div>
+		<audio src="Note-C.mp3" class="sound" id="C4" />
+		<audio src="Note-C-sharp.mp3" class="sound" id="Csharp4" />
+		<audio src="Note-D.mp3" class="sound" id="D4" />
+		<audio src="Note-E-flat.mp3" class="sound" id="Eb4" />
+		<audio src="Note-E.mp3" class="sound" id="E4" />
+		<audio src="Note-F.mp3" class="sound" id="F4" />
+		<audio src="Note-F-sharp.mp3" class="sound" id="Fsharp4" />
+		<audio src="Note-G.mp3" class="sound" id="G4" />
+		<audio src="Note-A-flat.mp3" class="sound" id="Ab4" />
+		<audio src="Note-A.mp3" class="sound" id="A4" />
+		<audio src="Note-B-flat.mp3" class="sound" id="Bb4" />
+		<audio src="Note-B.mp3" class="sound" id="B4" />
+		<audio src="Note-C'.m4a" class="sound" id="C5" />
+		<audio src="Note-D-flat'.m4a" class="sound" id="Csharp5" />
+		<audio src="Note-D'.m4a" class="sound" id="D5" />
+		<audio src="Note-E-flat'.m4a" class="sound" id="Eb5" />
+		<audio src="Note-E'.m4a" class="sound" id="E5" />
+		<audio src="Note-F'.m4a" class="sound" id="F5" />
+		<audio src="Note-F-sharp'.m4a" class="sound" id="Fsharp5" />
+		<audio src="Note-G'.m4a" class="sound" id="G5" />
+		<audio src="Note-A-flat.m4a'" class="sound" id="Ab5" />
+		<audio src="Note-A'.m4a" class="sound" id="A5" />
+		<audio src="Note-B-flat'.m4a" class="sound" id="Bb5" />
+		<audio src="Note-B'.m4a" class="sound" id="B5" />
+	</div>
+	<div id="buttons">
+		<input type="button" value="C" class="tone C" onclick="playC()">
+     <input type="button" value="C#"  class="tone C-sharp" onclick="playCsharp()">
+     <input type="button" value="D" class="tone D" onclick="playD()">
+     <input type="button" value="Eb" class="tone E-flat" onclick="playEb()">
+     <input type="button" value="E" class="tone E" onclick="playE()">
+     <input type="button" value="F" class="tone F" onclick="playF()">
+     <input type="button" value="F#" class="tone F-sharp" onclick="playFsharp()">
+     <input type="button" value="G" class="tone G" onclick="playG()">
+     <input type="button" value="Ab" class="tone A-flat" onclick="playAb()">
+     <input type="button" value="A" class="tone A" onclick="playA()">
+     <input type="button" value="Bb" class="tone B-flat" onclick="playBb()">
+     <input type="button" value="B" class="tone B" onclick="playB()">
+  </div>
+    <div>
+      <input type="text" id="selection" value="">
+    </div> 
+    <input type="button" id="generate" value="generate">
+    <input type="button" id="clear" value="clear">
+    <input type="button" id="sharps" value="Sharps">
+    <input type="button" id="flats" value="Flats">
+  <div class="wrapper">
+    <div id="prime"></div>
+    <div id="retrograde"></div>      
+    <div id="matrix"></div>
+  </div>
+  <script src="script.js"></script>
+  <script src="tones.js"></script>
+  </body>
+</html>
