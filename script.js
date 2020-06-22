@@ -1,20 +1,30 @@
 var homeRow = []; // initial tone row 
 var nextRow = []; // subsequent rows
-var homeValues = []; // initial row in value form 
+var oldValues = []; // initial row in value form 
 var nextValues = []; //subsequent values
-var primeNum = [];
-var invNum = [];
-var matrix = [];
+var refValues = [];
+var m_col = [];
+var m_row = [];
 var counter = 0;
 var rowIndex = 0;
 var offset = 0;
 var sharps = false;
 var flats = false;
+var matrix = [];
+
+const noteNames = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
 const MAX = $("#buttons .tone").length;
+var mode;
+var background;
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
 
 $("#matrix").hide();
 $("#generate").hide();
+$('#playback').hide();
 
 $("#sharps").click(function () {
   $(this).hide();
@@ -81,22 +91,25 @@ $("#flats").click(function () {
   $("#selection").val(homeRow);
 });
 
+
 $("#buttons .tone").click(function () {
+  $("#pick4me").hide();
   $(this).hide();
   var x = $(this).val();
   homeRow.push(x);
-  homeValues.push(getValue(x));
+  oldValues.push(getValue(x));
   $("#selection").val(homeRow);
-  matrix.push(homeValues[counter]);
-  console.log(matrix);
   counter++;
-  if (counter == MAX)
+  if (counter == MAX) {
     $("#generate").show(); // rows ready when we have 12
-
+  };
 });
 
 
 $("#clear").click(function () {
+  $("#pick4me").show();
+  $("#generate").hide();
+  $('#playback').hide();
   $("#matrix").hide();
   $("#buttons .tone").show();
   $("#sharps").show();
@@ -105,15 +118,28 @@ $("#clear").click(function () {
   $(".columns").val('');
   $(".rows").val('');
   homeRow = [];
-  homeValues = [];
+  oldValues = [];
+  refValues = [];
   nextRow = [];
   nextValues = [];
-  primeNum = [];
-  invNum = [];
+  m_col = [];
+  m_row = [];
   counter = 0;
   $("#matrix").text("");
   sharps = false;
   flats = false;
+});
+
+$("#pick4me").click(function () {
+  shuffle(noteNames);
+  $("#buttons .tone").hide();
+  $("#pick4me").hide();
+  $("#generate").show();
+  for (var i = 0; i < MAX; i++) {
+    homeRow.push(noteNames[i]);
+    oldValues.push(getValue(homeRow[i]));
+    $("#selection").val(homeRow);
+  }
 });
 
 
@@ -122,23 +148,25 @@ $("#generate").click(function () {
   $("#generate").hide();
   $("#sharps").hide();
   $("#flats").hide();
+  $('#playback').show();
+  counter = 0;
   getInverses();
   getPrimes();
-  printInversion("I", invNum);
-  printMarker("P", primeNum[0]);
-  printhomeRow(homeRow, homeValues);
-  printMarker("R", primeNum[0]);
-  nextValues = homeValues;
+  printInversion("I", m_col);
+  printMarker("P", m_row[0]);
+  printhomeRow(homeRow, oldValues);
+  printMarker("R", m_row[0]);
+  nextValues = oldValues;
   for (var x = 1; x < MAX; x++) {
-    offset = homeValues[x] - homeValues[x - 1];
+    offset = oldValues[x] - oldValues[x - 1];
     calcNum(nextValues, offset);
-    printMarker("P", primeNum[x]);
+    printMarker("P", m_row[x]);
     printNextRow(nextRow, nextValues);
-    printMarker("R", primeNum[x]);
+    printMarker("R", m_row[x]);
     nextRow = [];
   }
   console.log(matrix);
-  printInversion("RI", invNum);
+  printInversion("RI", m_col);
 });
 
 function getValue(note) {
@@ -217,29 +245,35 @@ function printhomeRow(row, values) {
   for (var i = 0; i < MAX; i++) {
     var note = $("<div>");
     note.addClass("tone");
-    note.addClass(getPitchClass(row[i]));
     note.text(row[i]);
+    note.addClass("I" + m_col[i]);
+    note.addClass("P" + m_row[counter]);
     $("#matrix").append(note);
+    refValues.push(getValue(row[i]));
   }
+  matrix.push(refValues);
+  counter++;
 }
 
 function printNextRow(row, values) {
   for (var i = 0; i < MAX; i++) {
     var note = $("<div>");
     note.addClass("tone");
+    note.addClass("I" + m_col[i]);
+    note.addClass("P" + m_row[counter]);
     row.push(getNote(values[i]));
-    note.addClass(getPitchClass(row[i]));
     note.text(row[i]);
     $("#matrix").append(note);
   }
+  counter++;
 }
 
 function printMarker(letter, num) {
-  var temp = $("<button>");
+  var temp = $("<input>");
+  temp.attr('type', 'button');
   temp.addClass("marker");
-  temp.text(letter + num);
+  temp.attr('value', letter + num);
   temp.attr('id', letter + num);
-  temp.attr('onclick', "playSeries()");
   $("#matrix").append(temp);
 }
 
@@ -252,10 +286,11 @@ function printInversion(letter, num) {
   last.addClass("blank");
   $("#matrix").append(first);
   for (var i = 0; i < MAX; i++) {
-    var temp = $("<button>");
+    var temp = $("<input>");
     temp.addClass("marker");
+    temp.attr('type', 'button');
     temp.attr('id', letter + num[i]);
-    temp.text(letter + num[i]);
+    temp.attr('value', letter + num[i]);
     $("#matrix").append(temp);
   }
   $("#matrix").append(last);
@@ -263,52 +298,36 @@ function printInversion(letter, num) {
 
 
 function calcNum(val, i) {
+  var newRow = [];
   for (var y = 0; y < MAX; y++) {
     val[y] -= i;
     if (val[y] > 11)
       val[y] -= 12;
     else if (val[y] < 0)
       val[y] += 12;
+    newRow.push(val[y]);
   }
+  matrix.push(newRow);
 }
 
 function getInverses() {
-  const invIndex = homeValues[0];
+  const invIndex = oldValues[0];
   for (var i = 0; i < MAX; i++) {
-    var temp = homeValues[i] - invIndex;
+    var temp = oldValues[i] - invIndex;
     if (temp >= 0) {
-      invNum[i] = temp;
+      m_col[i] = temp;
     }
     else {
       temp += 12;
-      invNum[i] = temp;
+      m_col[i] = temp;
     }
   }
 }
 
 function getPrimes() {
-  primeNum[0] = 0;
+  m_row[0] = 0;
   for (var i = 1; i < MAX; i++) {
-    primeNum[i] = 12 - invNum[i];
+    m_row[i] = 12 - m_col[i];
   }
 }
-
-function getPitchClass(row) {
-  if (row == "C#" | row == "Db")
-    return "C-sharp";
-  else if (row == "Eb" | row == "D#")
-    return "E-flat";
-  else if (row == "F#" | row == "Gb")
-    return "F-sharp";
-  else if (row == "Ab" | row == "G#")
-    return "A-flat";
-  else if (row == "Bb" | row == "A#")
-    return "B-flat";
-  else
-    return row;
-}
-
-
-
-
 

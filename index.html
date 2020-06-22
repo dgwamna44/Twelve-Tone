@@ -12,56 +12,81 @@
 </head>
 
 <body>
-	<div>
-		<audio src="Note-C.mp3" class="sound" id="C4" />
-		<audio src="Note-C-sharp.mp3" class="sound" id="Csharp4" />
-		<audio src="Note-D.mp3" class="sound" id="D4" />
-		<audio src="Note-E-flat.mp3" class="sound" id="Eb4" />
-		<audio src="Note-E.mp3" class="sound" id="E4" />
-		<audio src="Note-F.mp3" class="sound" id="F4" />
-		<audio src="Note-F-sharp.mp3" class="sound" id="Fsharp4" />
-		<audio src="Note-G.mp3" class="sound" id="G4" />
-		<audio src="Note-A-flat.mp3" class="sound" id="Ab4" />
-		<audio src="Note-A.mp3" class="sound" id="A4" />
-		<audio src="Note-B-flat.mp3" class="sound" id="Bb4" />
-		<audio src="Note-B.mp3" class="sound" id="B4" />
-		<audio src="Note-C'.m4a" class="sound" id="C5" />
-		<audio src="Note-D-flat'.m4a" class="sound" id="Csharp5" />
-		<audio src="Note-D'.m4a" class="sound" id="D5" />
-		<audio src="Note-E-flat'.m4a" class="sound" id="Eb5" />
-		<audio src="Note-E'.m4a" class="sound" id="E5" />
-		<audio src="Note-F'.m4a" class="sound" id="F5" />
-		<audio src="Note-F-sharp'.m4a" class="sound" id="Fsharp5" />
-		<audio src="Note-G'.m4a" class="sound" id="G5" />
-		<audio src="Note-A-flat.m4a'" class="sound" id="Ab5" />
-		<audio src="Note-A'.m4a" class="sound" id="A5" />
-		<audio src="Note-B-flat'.m4a" class="sound" id="Bb5" />
-		<audio src="Note-B'.m4a" class="sound" id="B5" />
+	<div id="piano">
+		<audio preload src="Note-C.mp3" class="sound" id="C4" />
+		<audio preload src="Note-C-sharp.mp3" class="sound" id="Csharp4" />
+		<audio preload src="Note-D.mp3" class="sound" id="D4" />
+		<audio preload src="Note-E-flat.mp3" class="sound" id="Eb4" />
+		<audio preload src="Note-E.mp3" class="sound" id="E4" />
+		<audio preload src="Note-F.mp3" class="sound" id="F4" />
+		<audio preload src="Note-F-sharp.mp3" class="sound" id="Fsharp4" />
+		<audio preload src="Note-G.mp3" class="sound" id="G4" />
+		<audio preload src="Note-A-flat.mp3" class="sound" id="Ab4" />
+		<audio preload src="Note-A.mp3" class="sound" id="A4" />
+		<audio preload src="Note-B-flat.mp3" class="sound" id="Bb4" />
+		<audio preload src="Note-B.mp3" class="sound" id="B4" />
+		<audio preload preload src="Note-C'.mp3" class="sound" id="C5" />
+		<audio preload src="Note-D-flat'.mp3" class="sound" id="Csharp5" />
+		<audio preload src="Note-D'.mp3" class="sound" id="D5" />
+		<audio preload src="Note-E-flat'.mp3" class="sound" id="Eb5" />
+		<audio preload src="Note-E'.mp3" class="sound" id="E5" />
+		<audio preload src="Note-F'.mp3" class="sound" id="F5" />
+		<audio preload src="Note-F-sharp'.mp3" class="sound" id="Fsharp5" />
+		<audio preload src="Note-G'.mp3" class="sound" id="G5" />
+		<audio preload src="Note-A-flat.mp3'" class="sound" id="Ab5" />
+		<audio preload src="Note-A'.mp3" class="sound" id="A5" />
+		<audio preload src="Note-B-flat'.mp3" class="sound" id="Bb5" />
+		<audio preload src="Note-B'.mp3" class="sound" id="B5" />
 	</div>
+	<h1> Twelve-tone Matrix Generator </h1>
 	<div id="buttons">
-		<input type="button" value="C" class="tone C" onclick="playC()">
-     <input type="button" value="C#"  class="tone C-sharp" onclick="playCsharp()">
-     <input type="button" value="D" class="tone D" onclick="playD()">
-     <input type="button" value="Eb" class="tone E-flat" onclick="playEb()">
-     <input type="button" value="E" class="tone E" onclick="playE()">
-     <input type="button" value="F" class="tone F" onclick="playF()">
-     <input type="button" value="F#" class="tone F-sharp" onclick="playFsharp()">
-     <input type="button" value="G" class="tone G" onclick="playG()">
-     <input type="button" value="Ab" class="tone A-flat" onclick="playAb()">
-     <input type="button" value="A" class="tone A" onclick="playA()">
-     <input type="button" value="Bb" class="tone B-flat" onclick="playBb()">
-     <input type="button" value="B" class="tone B" onclick="playB()">
+		<input type="button" value="C" class="tone C" onclick="playC4()">
+     <input type="button" value="C#"  class="tone C-sharp" onclick="playCsharp4()">
+     <input type="button" value="D" class="tone D" onclick="playD4()">
+     <input type="button" value="Eb" class="tone E-flat" onclick="playEb4()">
+     <input type="button" value="E" class="tone E" onclick="playE4()">
+     <input type="button" value="F" class="tone F" onclick="playF4()">
+     <input type="button" value="F#" class="tone F-sharp" onclick="playFsharp4()">
+     <input type="button" value="G" class="tone G" onclick="playG4()">
+     <input type="button" value="Ab" class="tone A-flat" onclick="playAb4()">
+     <input type="button" value="A" class="tone A" onclick="playA4()">
+     <input type="button" value="Bb" class="tone B-flat" onclick="playBb4()">
+     <input type="button" value="B" class="tone B" onclick="playB4()">
   </div>
     <div>
       <input type="text" id="selection" value="">
-    </div> 
-    <input type="button" id="generate" value="generate">
-    <input type="button" id="clear" value="clear">
-    <input type="button" id="sharps" value="Sharps">
-    <input type="button" id="flats" value="Flats">
+    </div>
+    <div id="options"> 
+      <input type="button" id="pick4me" value="Pick for me!">
+      <input type="button" id="generate" value="Generate">
+      <input type="button" id="clear" value="Clear">
+      Accidentals:
+      <input type="button" id="sharps" value="&#x266f;">
+      <input type="button" id="flats" value="&#x266d;">
+    </div>
+  </div>
+  <div id = "playback">
+  <!-- <input type="range" id="speed" name="speed" min="300" max="1000" step="50" list="tickmarks"> -->
+  <!-- <label for="speed">Speed</label>
+  <datalist id="tickmarks">
+  <option value="300" label="slow"></option>
+  <option value="350"></option>
+  <option value="400"></option>
+  <option value="450"></option>
+  <option value="500"></option>
+  <option value="550"></option>
+  <option value="600"></option>
+  <option value="650" label="moderate"></option>
+  <option value="700"></option>
+  <option value="750"></option>
+  <option value="800"></option>
+  <option value="850"></option>
+  <option value="900"></option>
+  <option value="950"></option>
+  <option value="1000" label="fast"></option> -->
+</datalist>
+</div>
   <div class="wrapper">
-    <div id="prime"></div>
-    <div id="retrograde"></div>      
     <div id="matrix"></div>
   </div>
   <script src="script.js"></script>

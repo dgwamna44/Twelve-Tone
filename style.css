@@ -3,6 +3,11 @@ body{
   font-family: Sylfaen, Helvetica, sans-serif;
   width: 800px;
   text-align: center;
+  background-color: aqua;
+}
+
+h1{
+  color: darkblue;
 }
 
 #matrix{
@@ -19,15 +24,15 @@ body{
   }
 
 #selection{
+  position: relative;
   width: 65%;
   height: 30px;
   font-family: Sylfaen, Helvetica, sans-serif;
   font-size: 24px;
   letter-spacing: 1px;
-  margin-top: 5px;
+  top: 20px;
   margin-left: 25px;
 }
-
 
 .tone{
   font-family: Sylfaen, Helvetica, sans-serif;
@@ -38,26 +43,28 @@ body{
   font-size: 20px;
   background: white;
   border: 1px solid olive;
+  
 }
 
-.marker{
-  font-family: Arial italic, Helvetica, sans-serif;
-  text-align: center;
-  width: auto;
-  height: 30px;
-  padding: 5px;
-  font-size: 12px;
-  background: cornsilk;
+input[type=button]{
+  border: .5px solid black;
+  border-radius: 8px;
+  transition: .5s ease-in-out;
 }
 
-.tone.C:hover{
-  background: aqua;
+input[type=button]:hover{
+  transform: scale(1.2);
+}
+
+
+ .tone.C:hover{
+  background: #f0f0ff;
 }
  .tone.C-sharp:hover{
   background:#ff00ff;
 }
  .tone.D:hover{
-  background:rgba(187, 255, 0, 0.466);
+  background: #ffff4d;
 }
  .tone.E-flat:hover{
   background:#37cfcf;
@@ -66,7 +73,7 @@ body{
   background:rgb(227, 255, 100);
 }
  .tone.F:hover{
-  background:rgb(64, 165, 224);
+  background:#50f0d0;
 }
  .tone.F-sharp:hover{
   background:brown;
@@ -75,7 +82,7 @@ body{
   background:rgba(255, 251, 0, 0.692);
 }
  .tone.A-flat:hover{
-  background: rgb(255, 0, 76);
+  background: #ff5f00;
 }
  .tone.A:hover{
   background:rgb(215, 218, 32);
@@ -86,14 +93,49 @@ body{
  .tone.B:hover{
   background: lightgreen;
 }
-#buttons{
 
+.tone.C-sharp, .tone.E-flat, .tone.F-sharp, .tone.A-flat, .tone.B-flat{
+  position: relative;
+  height: 65px;
+  bottom: 20px;  
+  background-color: black;
+  color: white; 
+}
+
+
+#sharps:hover{
+  margin: 10px;
+  background-color: lightblue;
+}
+#flats:hover{
+  margin: 10px;
+  background-color: pink;
+}
+
+#sharps, #flats{
+  width: 30px;
+  font-size: 20px;
+}
+
+#buttons{
   width: 75%;
+  height: 60px;
   margin-left: 15%;
 }
 
 #buttons .tone{
   margin: 5px;
+  height: 65px;
+  
+}
+#options {
+  position: relative;
+  top: 30px;
+}
+#pick4me{
+  width: 100px;
+  border: 2px solid fuchsia;
+  margin: 10px;
 }
 
 #clear{
@@ -108,6 +150,9 @@ body{
   margin: 10px;
 }
 
+#clear:hover, #generate:hover, #pick4me:hover{
+  margin: 10px;
+}
 
 .wrapper{
   margin: 100px auto;
@@ -117,19 +162,22 @@ body{
 }
 
 .marker{
+  border-radius: 5px;
   justify-content: center;
   text-align: center;
   position: relative;
   top: 10px;
+  height: 28px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: italic;
-  background-color: greenyellow;
+  background-color: yellow;
+  transition: .15s ease-in-out;
+}
+
+.marker:hover{transform: scale(1.25);
 }
 
 .blank{
   background-color: cornsilk;
 }
-
-
-
