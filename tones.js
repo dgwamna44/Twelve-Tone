@@ -142,7 +142,7 @@ $(document).on('click', '.marker', function () {
   var newLine = line;
   var iterator = 1;
   var note = 0;
-  
+
   // for (var i = 0; i < MAX; i++)
   // // (buffering issues with higher pitches)
   // {
@@ -171,20 +171,36 @@ $(document).on('click', '.marker', function () {
 
 $(document).on('mouseenter', '.marker', function () {
   var toneClass;
+  var letter;
   var temp = $(this).attr('id');
   toneClass = temp;
-  if (temp[1] == 'I') { // prime/inverse rows share the same notes as their retrograde counterparts
+  if (temp[1] == 'I') { // prime/inverse rows share the same notes as their retrograde counterparts. 
     toneClass = temp.slice(1);
+    $('.' + toneClass).css("color", "black");
+    $('.' + toneClass).css("background-color", "#ffff30");
+     $('.' + toneClass).css("border", ".5px solid gold");
   }
-  else if (temp[0] == "R") {
-    temp = setCharAt(temp,0,'P');
+  else if (temp[0] == "R") { // retrograde
+    temp = setCharAt(temp, 0, 'P');
     toneClass = temp;
+    $('.' + toneClass).css("background-color", "crimson");
+    $('.' + toneClass).css("color", "white");
+    $('.' + toneClass).css("border", "0px");
   }
+  else if (temp[0] == "P") //  prime
+  {
+    $('.' + toneClass).css("background-color", "#4060ff");
+    $('.' + toneClass).css("color", "white");
+    $('.' + toneClass).css("border", "0px");
+  }
+  else if (temp[0] == "I") { //inversion
+    $('.' + toneClass).css("background-color", "darkblue");
+    $('.' + toneClass).css("color", "white");
+    $('.' + toneClass).css("border", "0px");
+  }
+
   $('.' + toneClass).css("transform", "scale(1.15)");
   $('.' + toneClass).css("transition", ".5s");
-  $('.' + toneClass).css("background-color", "blue")
-  $('.' + toneClass).css("color", "white")
-  $('.' + toneClass).css("border", "0px")
   $('.' + toneClass).css('border-radius', '10px');
 });
 
@@ -196,7 +212,7 @@ $(document).on('mouseleave', '.marker', function () {
     toneClass = temp.slice(1);
   }
   else if (temp[0] == "R") {
-    temp = setCharAt(temp,0,'P');
+    temp = setCharAt(temp, 0, 'P');
     toneClass = temp;
   }
   $('.' + toneClass).css("transform", "scale(1)");
@@ -208,12 +224,12 @@ $(document).on('mouseleave', '.marker', function () {
 });
 
 
-function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substr(0,index) + chr + str.substr(index+1);
+function setCharAt(str, index, chr) {
+  if (index > str.length - 1) return str;
+  return str.substr(0, index) + chr + str.substr(index + 1);
 }
 
-$(document).on('input', '#speed', function() {
-    speed = ( 1400 - $(this).val() );
-    console.log(speed);
+$(document).on('input', '#speed', function () {
+  speed = (1400 - $(this).val());
+  console.log(speed);
 });

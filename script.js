@@ -12,7 +12,7 @@ var sharps = false;
 var flats = false;
 var matrix = [];
 
-const noteNames = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+const noteNames = ["C", "C\u266f", "D", "E\u266d", "E", "F", "F\u266f", "G", "A\u266d", "A", "B\u266d", "B"];
 
 const MAX = $("#buttons .tone").length;
 var mode;
@@ -32,28 +32,28 @@ $("#sharps").click(function () {
   sharps = true;
   flats = false;
   $('#buttons .tone').each(function () {
-    if ($(this).val() == "Db")
-      $(this).prop('value', 'C#');
-    else if ($(this).val() == "Eb")
-      $(this).prop('value', 'D#');
-    else if ($(this).val() == "Gb")
-      $(this).prop('value', 'F#');
-    else if ($(this).val() == "Ab")
-      $(this).prop('value', 'G#');
-    else if ($(this).val() == "Bb")
-      $(this).prop('value', 'A#');
+    if ($(this).val() == "D\u266d")
+      $(this).prop('value', 'C\u266f');
+    else if ($(this).val() == "E\u266d")
+      $(this).prop('value', 'D\u266f');
+    else if ($(this).val() == "G\u266d")
+      $(this).prop('value', 'F\u266f');
+    else if ($(this).val() == "A\u266d")
+      $(this).prop('value', 'G\u266f');
+    else if ($(this).val() == "B\u266d")
+      $(this).prop('value', 'A\u266f');
   });
   for (var i = 0; i < homeRow.length; i++) {
-    if (homeRow[i] == "Db")
-      homeRow[i] = "C#";
-    else if (homeRow[i] == "Eb")
-      homeRow[i] = "D#";
-    else if (homeRow[i] == "Gb")
-      homeRow[i] = "F#";
-    else if (homeRow[i] == "Ab")
-      homeRow[i] = "G#";
-    else if (homeRow[i] == "Bb")
-      homeRow[i] = "A#";
+    if (homeRow[i] == "D\u266d")
+      homeRow[i] = "C\u266f";
+    else if (homeRow[i] == "E\u266d")
+      homeRow[i] = "D\u266f";
+    else if (homeRow[i] == "G\u266d")
+      homeRow[i] = "F\u266f";
+    else if (homeRow[i] == "A\u266d")
+      homeRow[i] = "G\u266f";
+    else if (homeRow[i] == "B\u266d")
+      homeRow[i] = "A\u266f";
   }
   $("#selection").val(homeRow);
 });
@@ -65,28 +65,28 @@ $("#flats").click(function () {
   sharps = false;
   flats = true;
   $('#buttons .tone').each(function () {
-    if ($(this).val() == "C#")
-      $(this).prop('value', 'Db');
-    else if ($(this).val() == "D#")
-      $(this).prop('value', 'Eb');
-    else if ($(this).val() == "F#")
-      $(this).prop('value', 'Gb');
-    else if ($(this).val() == "G#")
-      $(this).prop('value', 'Ab');
-    else if ($(this).val() == "A#")
-      $(this).prop('value', 'Bb');
+    if ($(this).val() == "C\u266f")
+      $(this).prop('value', 'D\u266d');
+    else if ($(this).val() == "D\u266f")
+      $(this).prop('value', 'E\u266d');
+    else if ($(this).val() == "F\u266f")
+      $(this).prop('value', 'G\u266d');
+    else if ($(this).val() == "G\u266f")
+      $(this).prop('value', 'A\u266d');
+    else if ($(this).val() == "A\u266f")
+      $(this).prop('value', 'B\u266d');
   });
   for (var i = 0; i < homeRow.length; i++) {
-    if (homeRow[i] == "C#")
-      homeRow[i] = "Db";
-    else if (homeRow[i] == "D#")
-      homeRow[i] = "Eb";
-    else if (homeRow[i] == "F#")
-      homeRow[i] = "Gb";
-    else if (homeRow[i] == "G#")
-      homeRow[i] = "Ab";
-    else if (homeRow[i] == "A#")
-      homeRow[i] = "Bb";
+    if (homeRow[i] == "C\u266f")
+      homeRow[i] = "D\u266d";
+    else if (homeRow[i] == "D\u266f")
+      homeRow[i] = "E\u266d";
+    else if (homeRow[i] == "F\u266f")
+      homeRow[i] = "G\u266d";
+    else if (homeRow[i] == "G\u266f")
+      homeRow[i] = "A\u266d";
+    else if (homeRow[i] == "A\u266f")
+      homeRow[i] = "B\u266d";
   }
   $("#selection").val(homeRow);
 });
@@ -114,6 +114,7 @@ $("#clear").click(function () {
   $("#buttons .tone").show();
   $("#sharps").show();
   $("#flats").show();
+  $("p").show();
   $("#selection").val('');
   $(".columns").val('');
   $(".rows").val('');
@@ -149,6 +150,7 @@ $("#generate").click(function () {
   $("#sharps").hide();
   $("#flats").hide();
   $('#playback').show();
+  $("p").hide();
   counter = 0;
   getInverses();
   getPrimes();
@@ -172,25 +174,25 @@ $("#generate").click(function () {
 function getValue(note) {
   if (note == "C")
     return 0;
-  else if (note == "C#" | note == "Db")
+  else if (note == "C\u266f" | note == "D\u266d")
     return 1;
   else if (note == "D")
     return 2;
-  else if (note == "Eb" | note == "D#")
+  else if (note == "E\u266d" | note == "D\u266f")
     return 3;
   else if (note == "E")
     return 4;
   else if (note == "F")
     return 5;
-  else if (note == "F#" | note == "Gb")
+  else if (note == "F\u266f" | note == "G\u266d")
     return 6;
   else if (note == "G")
     return 7;
-  else if (note == "Ab" | note == "G#")
+  else if (note == "A\u266d" | note == "G\u266f")
     return 8;
   else if (note == "A")
     return 9;
-  else if (note == "Bb" | note == "A#")
+  else if (note == "B\u266d" | note == "A\u266f")
     return 10;
   else if (note == "B")
     return 11;
@@ -200,17 +202,17 @@ function getNote(pitch) {
     return "C";
   else if (pitch == 1) {
     if (sharps)
-      return "C#";
+      return "C\u266f";
     else
-      return "Db";
+      return "D\u266d";
   }
   else if (pitch == 2)
     return "D";
   else if (pitch == 3) {
     if (sharps)
-      return "D#";
+      return "D\u266f";
     else
-      return "Eb";
+      return "E\u266d";
   }
   else if (pitch == 4)
     return "E";
@@ -218,25 +220,25 @@ function getNote(pitch) {
     return "F";
   else if (pitch == 6) {
     if (sharps)
-      return "F#";
+      return "F\u266f";
     else
-      return "Gb";
+      return "G\u266d";
   }
   else if (pitch == 7)
     return "G";
   else if (pitch == 8) {
     if (sharps)
-      return "G#";
+      return "G\u266f";
     else
-      return "Ab";
+      return "A\u266d";
   }
   else if (pitch == 9)
     return "A";
   else if (pitch == 10) {
     if (sharps)
-      return "A#";
+      return "A\u266f";
     else
-      return "Bb";
+      return "B\u266d";
   }
   else if (pitch == 11)
     return "B";
