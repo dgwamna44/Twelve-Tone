@@ -17,7 +17,8 @@ h1{
 
 
 #matrix{
-  position: absolute;
+  bottom: 150px;
+  position: relative;
   text-align: center;
   vertical-align: center;
   display: grid;
@@ -175,7 +176,7 @@ input[type=button]:hover{
 
 .marker{
   border-radius: 5px;
-  justify-content: center;
+  box-shadow: 5px 5px goldenrod;
   text-align: center;
   position: relative;
   top: 10px;
@@ -193,3 +194,49 @@ input[type=button]:hover{
 .blank{
   background-color: cornsilk;
 }
+
+#instructions{
+  width: 82%;
+  margin-left: 11%;
+  text-align: left;
+  font-size: 16px;
+  font-family: calibri, helvetica, sans-serif;
+  background: rgb(250, 248, 114);
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+
+p{
+  font-family: calibri, helvertica, sans-serif;}
+
+@media only screen and (max-width: 600px) {
+ 
+  body {
+     width: 600px;
+     background: none;
+  }
+  #matrix{
+    bottom: 200px;
+    transform: scale(.9);
+  }
+  #matrix .tone{
+    border: 2px solid black;
+  }
+  #buttons{
+    width:100%;
+    margin-left: 2%;
+  }
+
+  #buttons .tone{
+    height: 60px;
+    margin: 5px;
+    
+  }
+
+  #instructions{
+    background: none;
+  }
+
+
+
+  }

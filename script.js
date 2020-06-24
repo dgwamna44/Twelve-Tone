@@ -114,6 +114,8 @@ $("#clear").click(function () {
   $("#buttons .tone").show();
   $("#sharps").show();
   $("#flats").show();
+  $("#clear").css("bottom", "0px");
+  $("#selection").show();
   $("p").show();
   $("#selection").val('');
   $(".columns").val('');
@@ -150,6 +152,9 @@ $("#generate").click(function () {
   $("#sharps").hide();
   $("#flats").hide();
   $('#playback').show();
+  $("#selection").hide();
+  $("#clear").css("position", "relative");
+  $("#clear").css("bottom", "120px");
   $("p").hide();
   counter = 0;
   getInverses();

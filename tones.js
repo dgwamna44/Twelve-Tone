@@ -169,6 +169,9 @@ $(document).on('click', '.marker', function () {
 
 });
 
+
+//Styling functions for the playback buttons
+
 $(document).on('mouseenter', '.marker', function () {
   var toneClass;
   var letter;
@@ -224,12 +227,18 @@ $(document).on('mouseleave', '.marker', function () {
 });
 
 
+
+
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;
   return str.substr(0, index) + chr + str.substr(index + 1);
 }
 
-$(document).on('input', '#speed', function () {
-  speed = (1400 - $(this).val());
-  console.log(speed);
-});
+
+
+
+
+// $(document).on('input', '#speed', function () {
+//   speed = (1400 - $(this).val());
+//   console.log(speed);
+// });
