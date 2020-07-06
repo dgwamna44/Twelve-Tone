@@ -24,7 +24,9 @@ function shuffle(array) {
 
 $("#matrix").hide();
 $("#generate").hide();
-$('#playback').hide();
+$('#playing').hide();
+$('#clearRow').hide();
+$('#newRow').hide();
 
 $("#sharps").click(function () {
   $(this).hide();
@@ -106,15 +108,18 @@ $("#buttons .tone").click(function () {
 });
 
 
-$("#clear").click(function () {
+$("#newRow").click(function () {
+  $(this).hide();
   $("#pick4me").show();
   $("#generate").hide();
-  $('#playback').hide();
   $("#matrix").hide();
+  $("#playing").hide();
+  $("#accidentals").show();
   $("#buttons .tone").show();
   $("#sharps").show();
   $("#flats").show();
-  $("#clear").css("bottom", "0px");
+  $("#newRow").css("bottom", "0px");
+  $("#clearRow").hide();
   $("#selection").show();
   $("p").show();
   $("#selection").val('');
@@ -123,10 +128,13 @@ $("#clear").click(function () {
   homeRow = [];
   oldValues = [];
   refValues = [];
+  newLine = [];
+  line = [];
   nextRow = [];
   nextValues = [];
   m_col = [];
   m_row = [];
+  matrix = [];
   counter = 0;
   $("#matrix").text("");
   sharps = false;
@@ -151,10 +159,19 @@ $("#generate").click(function () {
   $("#generate").hide();
   $("#sharps").hide();
   $("#flats").hide();
-  $('#playback').show();
+  $('#accidentals').hide();
   $("#selection").hide();
-  $("#clear").css("position", "relative");
-  $("#clear").css("bottom", "120px");
+  $('#playing').show();
+  $('#playing').html("Now Playing:");
+  $('#newRow').show();
+  $("#newRow").css("position", "relative");
+  $("#newRow").css("bottom", "120px");
+  $('#clearRow').show();
+  $('#clearRow').css("position", 'relative');
+  $('#clearRow').css("bottom", "120px");
+
+  $('#playing').css("bottom", "100px");
+  $("#playing").css("left", "60px");
   $("p").hide();
   counter = 0;
   getInverses();
@@ -172,7 +189,7 @@ $("#generate").click(function () {
     printMarker("R", m_row[x]);
     nextRow = [];
   }
-  console.log(matrix);
+
   printInversion("RI", m_col);
 });
 

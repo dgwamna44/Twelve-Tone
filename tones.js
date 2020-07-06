@@ -1,7 +1,10 @@
 var piano = $("#piano .sound");
 var sources = [];
 var sounds = [];
-var speed = 800;
+var speed = 1000;
+var toneClass;
+var toneClass2;
+var rowClass;
 
 function playC4() {
   piano[0].play();
@@ -77,25 +80,26 @@ function playB4() {
 // }
 
 $(document).on('click', '.marker', function () {
-  $('#playback').show();
   var mode, index, row, col;
   var line = [];
-  var temp = $(this).val();
-  if (temp[1] == "I" && temp.substring(2, 4) >= 10) {
-    mode = temp.substring(0, 2);
-    index = parseInt(temp.substring(2, 4));
+  var newLine = [];
+  rowClass = $(this).val();
+  $('#playing').html("Now Playing: " + rowClass);
+  if (rowClass[1] == "I" && rowClass.substring(2, 4) >= 10) {
+    mode = rowClass.substring(0, 2);
+    index = parseInt(rowClass.substring(2, 4));
   }
-  else if (temp[1] == "I" && temp.substring(2, 4) < 10) {
-    mode = temp.substring(0, 2);
-    index = parseInt(temp[2]);
+  else if (rowClass[1] == "I" && rowClass.substring(2, 4) < 10) {
+    mode = rowClass.substring(0, 2);
+    index = parseInt(rowClass[2]);
   }
-  else if (temp[1] != "I" && temp.substring(1) >= 10) {
-    mode = temp[0];
-    index = parseInt(temp.substring(1));
+  else if (rowClass[1] != "I" && rowClass.substring(1) >= 10) {
+    mode = rowClass[0];
+    index = parseInt(rowClass.substring(1));
   }
   else {
-    mode = temp[0];
-    index = parseInt(temp[1]);
+    mode = rowClass[0];
+    index = parseInt(rowClass[1]);
   }
 
   switch (mode) {
@@ -136,70 +140,114 @@ $(document).on('click', '.marker', function () {
       }
       break;
   }
-  console.log('\n' + temp + " was selected. The values are: \n" + line);
+
 
   var lineOffset = line[0];
   var newLine = line;
   var iterator = 1;
   var note = 0;
 
-  // for (var i = 0; i < MAX; i++)
-  // // (buffering issues with higher pitches)
-  // {
-  //   if (lineOffset > line[i]) {
-  //     newLine[i] += 12;
-  //   }
-  // }
+  // $("input:radio[name='octave']").change(
+  //   function () {
+  //     if (this.checked) {
+  //       for (var i = 0; i < MAX; i++) {
+  //         if (lineOffset > line[i])
+  //           newLine[i] += 12;
+  //       }
+  //     }
+  //   });
+
 
   function myLoop() {
     setTimeout(function () {
+      $('#playing').html("Now Playing: " + rowClass);
       var note = newLine[iterator - 1];
       piano[note].play();
       iterator++;
-      if (iterator <= MAX) {
-        myLoop();
+      var temp = $("<div>");
+      temp.addClass("tone");
+      switch (note) {
+        case 0:
+        temp.css('border', '4px solid blue');
+          break;
+        case 1:
+          temp.css('border', '4px solid #ff00ff');
+          break;
+        case 2:
+          temp.css('border', '4px solid orange');
+          break;
+        case 3:
+          temp.css('border', '4px solid #37cfcf');
+          break;
+        case 4:
+          temp.css('border', '4px solid rgb(227, 255, 100)');
+          break;
+        case 5:
+          temp.css('border', '4px solid #50f0d0');
+          break;
+        case 6:
+          temp.css('border', '4px solid brown');
+          break;
+        case 7:
+          temp.css('border', '4px solid gold');
+          break;
+        case 8:
+          temp.css('border', '4px solid #ff5f00');
+          break;
+        case 9:
+          temp.css('border', '4px solid rgb(215, 218, 32)');
+          break;
+        case 10:
+          temp.css('border', '4px solid rgb(127, 15, 207)');
+          break;
+        case 11:
+          temp.css('border', '4px solid lightgreen');
+          break;
       }
+      temp.text(getNote(note));
+      $('#playing').append(temp);
+      if (iterator <= MAX) {
+        $('.marker').attr('disabled', true);
+        $('#newRow').hide();
+        myLoop();
+       }
     }, speed)
   }
-
   myLoop();
+});
 
-
-  console.log("\n Actual pitches to be played are: " + newLine + "\n");
-
+$(document).on('click', '#clearRow', function (){
+  $('#playing').html("Now Playing:");
+  $('.marker').attr('disabled', false);
+  $('#newRow').show();
+  $("#matrix .tone").css("transform", "scale(1)");
+  $("#matrix .tone").css("transition", ".5s");
+  $("#matrix .tone").css("border-color", "white");
+  $("#matrix .tone").css("border", "1px solid olive");
+  $("#matrix .tone").css("color", "black")
+  $("#matrix .tone").css('border-radius', '0px');
 });
 
 
 //Styling functions for the playback buttons
-
 $(document).on('mouseenter', '.marker', function () {
-  var toneClass;
-  var letter;
   var temp = $(this).attr('id');
   toneClass = temp;
   if (temp[1] == 'I') { // prime/inverse rows share the same notes as their retrograde counterparts. 
     toneClass = temp.slice(1);
-    $('.' + toneClass).css("color", "black");
-    $('.' + toneClass).css("background-color", "#ffff30");
-     $('.' + toneClass).css("border", ".5px solid gold");
+    $('.' + toneClass).css("border", "3px solid gold");
   }
   else if (temp[0] == "R") { // retrograde
     temp = setCharAt(temp, 0, 'P');
     toneClass = temp;
-    $('.' + toneClass).css("background-color", "crimson");
-    $('.' + toneClass).css("color", "white");
-    $('.' + toneClass).css("border", "0px");
+    $('.' + toneClass).css("border", "3px solid crimson");
   }
   else if (temp[0] == "P") //  prime
   {
-    $('.' + toneClass).css("background-color", "#4060ff");
-    $('.' + toneClass).css("color", "white");
-    $('.' + toneClass).css("border", "0px");
+    $('.' + toneClass).css("border", "3px solid #4060ff");
   }
   else if (temp[0] == "I") { //inversion
-    $('.' + toneClass).css("background-color", "darkblue");
-    $('.' + toneClass).css("color", "white");
-    $('.' + toneClass).css("border", "0px");
+    $('.' + toneClass).css("border", "3px solid darkblue");
   }
 
   $('.' + toneClass).css("transform", "scale(1.15)");
@@ -220,7 +268,7 @@ $(document).on('mouseleave', '.marker', function () {
   }
   $('.' + toneClass).css("transform", "scale(1)");
   $('.' + toneClass).css("transition", ".5s");
-  $('.' + toneClass).css("background-color", "white");
+  $('.' + toneClass).css("border-color", "white");
   $('.' + toneClass).css("border", "1px solid olive");
   $('.' + toneClass).css("color", "black")
   $('.' + toneClass).css('border-radius', '0px');
@@ -229,10 +277,12 @@ $(document).on('mouseleave', '.marker', function () {
 
 
 
+
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;
   return str.substr(0, index) + chr + str.substr(index + 1);
 }
+
 
 
 

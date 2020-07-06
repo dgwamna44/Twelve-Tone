@@ -26,14 +26,14 @@
 		<audio preload src="Note-B-flat.mp3" class="sound" id="Bb4" />
 		<audio preload src="Note-B.mp3" class="sound" id="B4" />
 		<audio preload preload src="Note-C'.mp3" class="sound" id="C5" />
-		<audio preload src="Note-D-flat'.mp3" class="sound" id="Csharp5" />
+		<audio preload src="Note-C-sharp'.mp3" class="sound" id="Csharp5" />
 		<audio preload src="Note-D'.mp3" class="sound" id="D5" />
 		<audio preload src="Note-E-flat'.mp3" class="sound" id="Eb5" />
 		<audio preload src="Note-E'.mp3" class="sound" id="E5" />
 		<audio preload src="Note-F'.mp3" class="sound" id="F5" />
 		<audio preload src="Note-F-sharp'.mp3" class="sound" id="Fsharp5" />
 		<audio preload src="Note-G'.mp3" class="sound" id="G5" />
-		<audio preload src="Note-A-flat.mp3'" class="sound" id="Ab5" />
+		<audio preload src="Note-A-flat'.mp3'" class="sound" id="Ab5" />
 		<audio preload src="Note-A'.mp3" class="sound" id="A5" />
 		<audio preload src="Note-B-flat'.mp3" class="sound" id="Bb5" />
 		<audio preload src="Note-B'.mp3" class="sound" id="B5" />
@@ -49,7 +49,8 @@
 			<li> Once you're ready, the matrix will be ready to generate. </li>
 			<li>You can also select the yellow buttons on the perimeter to play back the respective row (or column) of notes, relative
 				to the intervals among the pitches entered. </li>
-			<li> Hit Clear to start over at anytime. Enjoy! </li>
+			<li> Hit clear Row before playing another sequence within the matrix; select New Row to start over at anytime. </li>
+      <li> Enjoy! </li>
 		</ul>
 	</article>
 
@@ -74,10 +75,15 @@
     <div id="options"> 
       <input type="button" id="pick4me" value="Pick for me!">
       <input type="button" id="generate" value="Generate">
-      <input type="button" id="clear" value="Clear">
-      <p>Accidentals:</p>
+      <input type="button" id="newRow" value="New Row">
+      <input type="button" id="clearRow" value="Clear Row">
+      <p>
+      Accidentals:
       <input type="button" id="sharps" value="&#x266f;">
       <input type="button" id="flats" value="&#x266d;">
+      </p>
+    </div>
+      <div id="playing"> Now Playing: </div>
     </div>
   </div>
   <div id = "playback">
