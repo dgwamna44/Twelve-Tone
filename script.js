@@ -299,6 +299,14 @@ function printMarker(letter, num) {
   temp.attr('value', letter + num);
   temp.attr('id', letter + num);
   $("#matrix").append(temp);
+  switch(letter){
+    case "P":
+      temp.prop('title', "Play Prime Row " + num);
+      break;
+    case "R":
+      temp.prop('title', "Play Retrograde Row " + num);
+      break;
+  }
 }
 
 function printInversion(letter, num) {
@@ -315,6 +323,14 @@ function printInversion(letter, num) {
     temp.attr('type', 'button');
     temp.attr('id', letter + num[i]);
     temp.attr('value', letter + num[i]);
+      switch(letter){
+    case "I":
+      temp.prop('title', "Play Inversion Row " + num[i]);
+      break;
+    case "RI":
+      temp.prop('title', "Play Retrograde Inversion Row " + num[i]);
+      break;
+  }
     $("#matrix").append(temp);
   }
   $("#matrix").append(last);

@@ -220,7 +220,7 @@ input[type=button]:hover{
   width: 40px;
   font-family: Sylfaen, Helvetica, sans-serif;
   font-size: 18px;
-  font-style: italic;
+  font-style: bold;
   background-color: yellow;
   transition: .15s ease-in-out;
 }
@@ -249,6 +249,18 @@ button[disabled]:hover{
   transform: scale(1);
 }
 
+.marker:hover:after {
+    position: absolute;
+    content: attr(title);
+    display: inline-block;
+    left: 0px;
+    top: 0px;
+    border: 2px solid black;
+    padding: 5px;
+    background-color: black;
+    color: blue;
+  }
+
 
 
 p{
@@ -263,9 +275,6 @@ p{
   #matrix{
     bottom: 200px;
     transform: scale(.9);
-  }
-  #matrix .tone{
-    border: 2px solid black;
   }
   #buttons{
     width:100%;
