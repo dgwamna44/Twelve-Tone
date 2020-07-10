@@ -3,7 +3,7 @@ body{
   font-family: Garamond, Helvetica, sans-serif;
   width: 800px;
   text-align: center;
-  background: gold;
+  background: white;
 }
 
 h1{
@@ -172,12 +172,12 @@ input[type=button]:hover{
   grid-gap: 0px;
   grid-template-columns: repeat(14, 1fr);
   border-radius: 10px;
-  background: orange;
-  border: 5px solid purple;
+  background: white;
   padding: 2px;
   padding-bottom: 5px;
   font-size: 20px;
   color: black;
+  border: 1px solid green;
 }
 
 #playing .tone{
@@ -226,6 +226,7 @@ input[type=button]:hover{
 }
 
 
+
 .blank{
   background-color: cornsilk;
 }
@@ -258,7 +259,6 @@ button[disabled]:hover{
     border: 2px solid black;
     padding: 5px;
     background-color: black;
-    color: blue;
   }
 
 
@@ -270,7 +270,6 @@ p{
  
   body {
      width: 600px;
-     background: gold;
   }
   #matrix{
     bottom: 200px;

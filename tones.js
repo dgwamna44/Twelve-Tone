@@ -1,4 +1,5 @@
 var piano = $("#piano .sound");
+var pianoHigh = $("#piano-high .sound");
 var sources = [];
 var sounds = [];
 var speed = 1000;
@@ -84,7 +85,7 @@ $(document).on('click', '.marker', function () {
   var line = [];
   var newLine = [];
   rowClass = $(this).val();
-  $('#playing').html("Now Playing: " + rowClass);
+  $('#playing').html("Now Playing: " + "Row " + rowClass);
   if (rowClass[1] == "I" && rowClass.substring(2, 4) >= 10) {
     mode = rowClass.substring(0, 2);
     index = parseInt(rowClass.substring(2, 4));
@@ -147,64 +148,78 @@ $(document).on('click', '.marker', function () {
   var iterator = 1;
   var note = 0;
 
-  // $("input:radio[name='octave']").change(
-  //   function () {
-  //     if (this.checked) {
-  //       for (var i = 0; i < MAX; i++) {
-  //         if (lineOffset > line[i])
-  //           newLine[i] += 12;
-  //       }
-  //     }
-  //   });
 
+// offset if need to expand past the octave
 
+ for (var i = 0; i < MAX; i++) { 
+   if (lineOffset > line[i])
+     newLine[i] += 12;
+ }
+ 
   function myLoop() {
     setTimeout(function () {
-      $('#playing').html("Now Playing: " + rowClass);
+      $('#playing').html("Now Playing: " + "Row " + rowClass);
       var note = newLine[iterator - 1];
-      piano[note].play();
+      if(note < 12)
+        piano[note].play();
+      else
+        pianoHigh[note-12].play();
       iterator++;
       var temp = $("<div>");
       temp.addClass("tone");
       switch (note) {
         case 0:
+        case 12:
         temp.css('border', '4px solid blue');
           break;
         case 1:
+        case 13:
           temp.css('border', '4px solid #ff00ff');
           break;
         case 2:
+        case 14:
           temp.css('border', '4px solid orange');
           break;
         case 3:
+        case 15:
           temp.css('border', '4px solid #37cfcf');
           break;
         case 4:
+        case 16:
           temp.css('border', '4px solid rgb(227, 255, 100)');
           break;
         case 5:
+        case 17:
           temp.css('border', '4px solid #50f0d0');
           break;
         case 6:
+        case 18:
           temp.css('border', '4px solid brown');
           break;
         case 7:
+        case 19:
           temp.css('border', '4px solid gold');
           break;
         case 8:
+        case 20:
           temp.css('border', '4px solid #ff5f00');
           break;
         case 9:
+        case 21:
           temp.css('border', '4px solid rgb(215, 218, 32)');
           break;
         case 10:
+        case 22:
           temp.css('border', '4px solid rgb(127, 15, 207)');
           break;
         case 11:
           temp.css('border', '4px solid lightgreen');
           break;
       }
-      temp.text(getNote(note));
+      if (note > 11)
+        temp.text(getNote(note - 12));
+      else
+        temp.text(getNote(note));
       $('#playing').append(temp);
       if (iterator <= MAX) {
         $('.marker').attr('disabled', true);
