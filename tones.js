@@ -43,42 +43,6 @@ function playBb4() {
 function playB4() {
   piano[11].play();
 }
-// function playC5() {
-//   C5.trigger('play');
-// }
-// function playCsharp5() {
-//   Csharp5.trigger('play');
-// }
-// function playD5() {
-//   D5.trigger('play');
-// }
-// function playEb5() {
-//   Eb5.trigger('play');
-// }
-// function playE5() {
-//   E5.trigger('play');
-// }
-// function playF5() {
-//   F5.trigger('play');
-// }
-// function playFsharp5() {
-//   Fsharp5.trigger('play');
-// }
-// function playG5() {
-//   G5.trigger('play');
-// }
-// function playAb5() {
-//   Ab5.trigger('play');
-// }
-// function playA5() {
-//   A5.trigger('play');
-// }
-// function playBb5() {
-//   Bb5.trigger('play');
-// }
-// function playB5() {
-//   B5.trigger('play');
-// }
 
 $(document).on('click', '.marker', function () {
   var mode, index, row, col;
